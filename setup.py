@@ -49,11 +49,11 @@ def convert_message_to_html_b64(msg=None):
   for item in range (0,len(msg.splitlines())):
     msg.splitlines().insert(item*2,"<br>")
 
-  html_code = """<h1 class="poptitle1">
+  html_code = """<h1>
     <p style="text-align: center; color: red">%s</p>
     <div style="clear:both"></div>
     </h1>
-    <h2 class="poptitle" style="text-align: center;">%s</h2>
+    <h2 style="text-align: center;">%s</h2>
     <br>
     %s
     <br>
@@ -62,15 +62,11 @@ def convert_message_to_html_b64(msg=None):
     <br>
     <br>
     <center>
-    <img src="%s" class="logo" alt="Image" style="width:100px;height:100px;"/>
+    <img src="%s" alt="Image" style="width:100px;height:100px;"/>
     </center>
-    <br><br>""" % (title,subtile,('\n'.join(message_list)),signature,logo_link)
+    <br><br>""" % (title,subtile,('\n'.join(message_list)),signature,logo_link) 
 
-  sample_string_bytes = html_code.encode("utf8")
-  base64_bytes = base64.b64encode(sample_string_bytes)
-  base64_message = base64_bytes.decode("ascii")
-
-  return base64_message
+  return (base64.b64encode(html_code.encode("utf8"))).decode("ascii")
 
 def create_task_xml(b64_msg=None):
 
