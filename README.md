@@ -1,27 +1,27 @@
-# Message popup WAPT à l'aide d'une tâche planifiée
+# WAPT popup message using a scheduled task
 
-Si vous souhaitez afficher un message popup aux utilisateurs depuis un paquet WAPT à l'aide d'une tâche planifiée Windows.
+If you want to display a popup message to users from a WAPT package using a Windows scheduled task.
 
-# Fonctionnement
+# How it works
 
-Configurez le fichier conf.ini selon vos besoins
+Configure the conf.ini file as required
 
-# Actions du paquet
+# Package actions
 
-## Création de la tâche planifiée
+## Scheduled task creation
 
-### Onglet général
+### General tab
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-general.png?raw=true)
 
-### Onglet déclencheurs
+### Triggers tab
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-trigger.png?raw=true)
 
-### Onglet actions
+### Action tab
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-action.png?raw=true)
 
-## Résultat
+## Result
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/message.png?raw=true)
