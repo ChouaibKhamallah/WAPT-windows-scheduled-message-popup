@@ -20,6 +20,7 @@ task_enabled = config.getboolean('common','task_enabled')
 popup_directly = config.getboolean('common','popup_directly')
 popup_at_logon = config.getboolean('common','popup_at_logon')
 popup_after_unlock_session = config.getboolean('common','popup_after_unlock_session')
+group_objectSid_filter = config.get('common','group_objectSid_filter')
 
 def install():
     uninstall()
@@ -102,7 +103,7 @@ def create_task_xml(b64_msg=None):
     </Triggers>
     <Principals>
       <Principal id="Author">
-        <GroupId>S-1-5-21-1329495337-996673521-1290604912-513</GroupId>
+        <GroupId>%s</GroupId>
         <RunLevel>LeastPrivilege</RunLevel>
       </Principal>
     </Principals>
@@ -135,7 +136,7 @@ def create_task_xml(b64_msg=None):
                 popup_start_time,popup_end_time,str(popup_at_logon).lower(),
                 popup_start_time,popup_end_time,str(popup_after_unlock_session).lower(),
                 popup_start_time,popup_end_time,str(popup_directly).lower(),
-                str(task_enabled).lower(),
+                group_objectSid_filter,str(task_enabled).lower(),
                 b64_msg)
 
   with open(f"{task_name}.xml", "w+") as xml:
