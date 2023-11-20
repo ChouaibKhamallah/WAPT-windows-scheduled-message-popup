@@ -22,6 +22,6 @@ Configurez le fichier conf.ini selon vos besoins
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-action.png?raw=true)
 
-## Création du message WAPT déclenché par la tâche planifiée
+## Résultat
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/message.png?raw=true)
