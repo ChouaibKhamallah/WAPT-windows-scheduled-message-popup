@@ -45,11 +45,9 @@ def audit():
         return "WARNING"
 
 def convert_message_to_html_b64(msg=None):
-    
-  message_list = msg.splitlines()
 
-  for item in range (0,len(message_list)):
-    messsage_list.insert(item*2,"<br>")
+  for item in range (0,len(msg)):
+    msg.insert(item*2,"<br>")
  
   html_code = """<h1>
     <p style="text-align: center; color: red">%s</p>
@@ -66,7 +64,7 @@ def convert_message_to_html_b64(msg=None):
     <center>
     <img src="%s" alt="Image" style="width:100px;height:100px;"/>
     </center>
-    <br><br>""" % (title,subtile,('\n'.join(message_list)),signature,logo_link) 
+    <br><br>""" % (title,subtile,('\n'.join(msg)),signature,logo_link) 
 
   return (base64.b64encode(html_code.encode("utf8"))).decode("ascii")
 
