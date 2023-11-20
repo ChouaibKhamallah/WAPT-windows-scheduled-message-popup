@@ -46,10 +46,8 @@ def audit():
 
 def convert_message_to_html_b64(msg=None):
 
-  message_list = msg.splitlines()
-
-  for item in range (0,len(message_list)):
-    message_list.insert(item*2,"<br>")
+  for item in range (0,len(msg.splitlines())):
+    msg.splitlines().insert(item*2,"<br>")
 
   html_code = """<h1 class="poptitle1">
     <p style="text-align: center; color: red">%s</p>
