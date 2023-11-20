@@ -1,43 +1,25 @@
 # -*- coding: utf-8 -*-
 from setuphelpers import *
 import base64
+import configparser
 
-# INDIQUER UN TITRE (Exemple : INFORMATION, ALERTE, IMPORTANT...)
-title = "Alerte de sécurité importante"
-# INDIQUER UN SOUS-TITRE (Exemple: Perturbation des accès mails, Mise à jour applicative...)
-subtile = "Changement de mot de passe recommandé"
-# INDIQUER LE CORPS DU MESSAGE (Le retour à la ligne est pris en compte, par exemple, si vous passez une ligne, une ligne sera passée dans le popup)
-message = """Notre système de sécurité a detecté que votre mot de passe de session Windows est répertorié dans la base de données Have I Been Pwned, un service qui identifie les mots de passe affectés par des fuites de données sur Internet.
+configfile='conf.ini'
+config = configparser.ConfigParser()
+config.read(configfile, encoding='utf-8')
 
-Nous vous recommandons vivement de prendre des mesures préventives pour sécuriser votre compte en modifiant votre mot de passe en respectant les recommandations disponibles en cliquant <a href="https://www.cybermalveillance.gouv.fr/medias/2019/11/Fiche-pratique_mots-de-passe.pdf">sur le lien suivant</a>.
-
-La sécurité de vos données est notre priorité, et nous mettons en œuvre des mesures pour renforcer la protection de votre compte.
-
-Si vous avez des questions, n'hésitez pas à nous contacter.
-
-Cordialement,"""
-# INDIQUER LE SIGNATAIRE DU MESSAGE (Exemple La DSI, La DRH...)
-signature = "La Direction des Systèmes d'Informations"
-# INDIQUER LE LIEN D'UN LOGO D'ENTREPRISE
-logo_link = "https://srvwapt.mydomain.lan/wapt/logo.jpg"
-
-# INDIQUER UNE DATE DE DEPART DU POPUP, Mettre une date passée pour afficher tout de suite
-popup_start_time = "2022-11-15T17:00:00"
-# INDIQUER UNE DATE DE FIN DU POPUP
-popup_end_time = "2024-11-15T14:00:00"
-
-# Nom de la tâche planifiée
-task_name = "WAPT-popup"
-# Activer la tâche planifiée
-task_enabled = True
-# Afficher le popup directement après installation
-popup_directly = True
-# Afficher le popup après la connexion
-popup_at_logon = True
-# Afficher le popup après déverouillage
-popup_after_unlock_session = True
-
-# RIEN N'EST A MODIFIER DANS LA SUITE DU CODE
+title = config.get('common','title')
+subtile = config.get('common','subtile')
+message = config.get('common','message').replace('"','')
+signature = config.get('common','signature')
+logo_link = config.get('common','logo_link')
+popup_start_time = config.get('common','popup_start_time')
+popup_end_time = config.get('common','popup_end_time')
+popup_end_time = config.get('common','popup_end_time')
+task_name = config.get('common','task_name')
+task_enabled = config.getboolean('common','task_enabled')
+popup_directly = config.getboolean('common','popup_directly')
+popup_at_logon = config.getboolean('common','popup_at_logon')
+popup_after_unlock_session = config.getboolean('common','popup_after_unlock_session')
 
 def install():
     uninstall()
@@ -64,6 +46,7 @@ def audit():
 def convert_message_to_html_b64(msg=None):
 
   message_list = msg.splitlines()
+
   for item in range (0,len(message_list)):
     message_list.insert(item*2,"<br>")
 
@@ -87,6 +70,7 @@ def convert_message_to_html_b64(msg=None):
   sample_string_bytes = html_code.encode("utf8")
   base64_bytes = base64.b64encode(sample_string_bytes)
   base64_message = base64_bytes.decode("ascii")
+
   return base64_message
 
 def create_task_xml(b64_msg=None):
