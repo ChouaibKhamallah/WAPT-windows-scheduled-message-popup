@@ -10,9 +10,15 @@ Configurez le fichier conf.ini selon vos besoins
 
 ## Création de la tâche planifiée
 
+### Onglet général
+
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-general.png?raw=true)
 
+### Onglet déclencheurs
+
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-trigger.png?raw=true)
+
+### Onglet actions
 
 ![alt text](https://github.com/ChouaibKhamallah/WAPT-windows-scheduled-message-popup/blob/main/task-action.png?raw=true)
 
