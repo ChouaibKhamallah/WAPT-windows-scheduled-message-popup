@@ -46,8 +46,11 @@ def audit():
 
 def convert_message_to_html_b64(msg=None):
     
-  message_list = [msg.splitlines().insert(item*2,"<br>") for item in range (0,len(msg.splitlines()))]
-    
+  message_list = msg.splitlines()
+
+  for item in range (0,len(message_list)):
+    messsage_list.insert(item*2,"<br>")
+ 
   html_code = """<h1>
     <p style="text-align: center; color: red">%s</p>
     <div style="clear:both"></div>
