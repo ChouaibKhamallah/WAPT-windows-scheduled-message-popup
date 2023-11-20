@@ -24,7 +24,7 @@ group_objectSid_filter = config.get('common','group_objectSid_filter')
 
 def install():
     uninstall()
-    create_task_xml(b64_msg=convert_message_to_html_b64(msg=message))
+    create_task_xml(b64_msg=convert_message_to_html_b64(msg=message.splitlines()))
     run(f'schtasks /create /tn "{task_name}" /xml "{task_name}.xml"')
 
 def uninstall():
