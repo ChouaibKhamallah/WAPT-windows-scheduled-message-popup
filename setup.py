@@ -45,9 +45,8 @@ def audit():
         return "WARNING"
 
 def convert_message_to_html_b64(msg=None):
-
-  for item in range (0,len(msg)):
-    msg.insert(item*2,"<br>")
+  
+  [msg.insert(item*2,"<br>") for item in range (0,len(msg))] 
  
   html_code = """<h1>
     <p style="text-align: center; color: red">%s</p>
