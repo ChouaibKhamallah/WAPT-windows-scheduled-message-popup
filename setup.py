@@ -28,24 +28,19 @@ def install():
     run(f'schtasks /create /tn "{task_name}" /xml "{task_name}.xml"')
 
 def uninstall():
-
   if task_exists(task_name):
     delete_task(task_name)
 
 def audit():
-
     if task_exists(task_name):
       print(f'La tâche planifiée "{task_name}" est bien présente sur le poste')
       return "OK"
-
     else:
-
         print(f"La tâche planifiée {task_name} n'existe pas")
         install()
         return "WARNING"
 
 def convert_message_to_html_b64(msg=None):
-  
   [msg.insert(item*2,"<br>") for item in range (0,len(msg))] 
 
   html_code = """<h1>
@@ -68,7 +63,6 @@ def convert_message_to_html_b64(msg=None):
   return (base64.b64encode(html_code.encode("utf8"))).decode("ascii")
 
 def create_task_xml(b64_msg=None):
-
   xml_data = """<?xml version="1.0" encoding="UTF-16"?>
   <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
     <RegistrationInfo>
