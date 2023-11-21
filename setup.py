@@ -9,7 +9,7 @@ config.read(configfile, encoding='utf-8')
 
 title = config.get('message','title')
 subtile = config.get('message','subtile')
-message = config.get('message','message').replace(config.get('common','message')[0],"").replace(config.get('common','message')[-1],"")
+message = (config.get('message','message').replace(config.get('message','message')[0],"").replace(config.get('message','message')[-1],"")).splitlines()
 signature = config.get('message','signature')
 logo_link = config.get('message','logo_link')
 popup_start_time = config.get('task','popup_start_time')
@@ -24,7 +24,7 @@ group_objectSid_filter = config.get('task','group_objectSid_filter')
 
 def install():
     uninstall()
-    create_task_xml(b64_msg=convert_message_to_html_b64(msg=message.splitlines()))
+    create_task_xml(b64_msg=convert_message_to_html_b64(msg=message))
     run(f'schtasks /create /tn "{task_name}" /xml "{task_name}.xml"')
 
 def uninstall():
@@ -47,7 +47,7 @@ def audit():
 def convert_message_to_html_b64(msg=None):
   
   [msg.insert(item*2,"<br>") for item in range (0,len(msg))] 
- 
+
   html_code = """<h1>
     <p style="text-align: center; color: red">%s</p>
     <div style="clear:both"></div>
